@@ -6,7 +6,7 @@ namespace Array_Csharp_1laba
 {
     public class Map<KEY, DATA>  where KEY : notnull, IComparable<KEY>
     {
-        public Node<KEY, DATA> Root { get; private set;}
+        public Node<KEY, DATA> Root;
 
         public void Insert(KEY key, DATA data)
         {
@@ -414,7 +414,7 @@ namespace Array_Csharp_1laba
                     LTurn(node.Parent);
                 }
 
-                if (Brother(node)?.Right.Left == Color.red && node.Parent.Right == node)
+                if (Brother(node).Right != null && Brother(node).Right.Left == Color.red && node.Parent.Right != null && node.Parent.Right == node)
                 {
                     Brother(node).Right.Left.Color = Color.black;
 
@@ -422,7 +422,7 @@ namespace Array_Csharp_1laba
 
                     RTurn(node.Parent);
                 }
-                else if (Brother(node)?.Left.Right == Color.red && node.Parent.Left== node) 
+                else if (Brother(node)?.Left != null && Brother(node)?.Left.Right == Color.red && node.Parent.Left== node) 
                 {
                     Brother(node).Left.Right.Color = Color.black;
 
@@ -535,10 +535,10 @@ namespace Array_Csharp_1laba
 
         private Node<KEY, DATA> Brother(Node<KEY, DATA> node)
         {
-            if(node.Parent != null)
+            //if(node.Parent != null)
             return node.Parent.Left != node ? node.Parent.Left : node.Parent.Right;
 
-            return null;
+            //return null;
 
         }
 
@@ -595,7 +595,7 @@ namespace Array_Csharp_1laba
 
             Print(node.Left);
 
-            Console.WriteLine($" цвет - {node.Color}, данные - {node.Data}");
+            Console.WriteLine($" цвет - {node.Color}, ключ - {node.Key}, данные - {node.Data}");
 
             Print(node.Right);
         }
